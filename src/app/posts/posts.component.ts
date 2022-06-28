@@ -14,10 +14,9 @@ export class PostsComponent implements OnInit {
   constructor(private service:PostsService) { }
 
   ngOnInit(): void {
-    this.service.getPosts().subscribe(res => {
-      //console.log(res);   
-      this.posts = JSON.parse(JSON.stringify(res));
-      //console.log(this.posts);
-    })
+    this.service.getPosts().subscribe(res => {         
+      this.posts = JSON.parse(JSON.stringify(res));      
+    }, err => console.log('Error retrieving data: ' + err),
+    );    
   }
 }
