@@ -1,8 +1,8 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
+// import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Post } from '../models/post.model';
 import { PostsService } from '../posts.service';
-
 import { PostsComponent } from './posts.component';
 
 describe('PostsComponent', () => {
@@ -36,21 +36,27 @@ describe('PostsComponent', () => {
   it('receive response from PostService', async() => {
       service.getPosts().subscribe(res => {
       expect(res).toBeDefined;      
-    }).unsubscribe();    
+    }, (error) => {
+      console.log(error)
+    });   
   });
 
-  it('receive 100 objects from PostService', async() => {
-      service.getPosts().subscribe(res => {      
+  it('receive 100 objects from PostService', () => {
+      service.getPosts().subscribe((res) => {      
       posts = JSON.parse(JSON.stringify(res));
       expect(posts.length).toBe(100);
-    }).unsubscribe();   
+    }, (error) => {
+      console.log(error)
+    });  
   });
 
   it('receive 2nd object title = qui est esse', async() => {
       service.getPosts().subscribe(res => {      
       posts = JSON.parse(JSON.stringify(res));
       expect(posts[1].title).toBe('qui est esse');
-    }).unsubscribe();   
+    }, (error) => {
+      console.log(error)
+    });  
   });
 
 });
