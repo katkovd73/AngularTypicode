@@ -1,0 +1,9 @@
+<h1>Photos from Flickr - 5 pictures of dogs</h1>
+<br>
+<ul>
+    <li *ngFor="let photo of photos">
+        {{photo.title}} <br>
+        <img src={{photo.url_m}} alt="photo">
+    </li>
+</ul>
+
